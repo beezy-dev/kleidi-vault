@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/url"
-	"slices"
 	"strings"
 )
 
@@ -34,17 +33,6 @@ func ValidateListenAddr(listenAddr string) (string, error) {
 
 	log.Println("INFO: flag -listen set to", listenAddr)
 	return url.Path, nil
-}
-
-func ValidateProvider(providerService string) (string, error) {
-
-	providerServices := []string{"hvault", "softhsm", "tpm"}
-	if !slices.Contains(providerServices, providerService) {
-		return providerService, fmt.Errorf("/!\\ flag -provider is not supported. Only %v are valid options", providerServices)
-	}
-
-	log.Println("INFO: flag -provider set to", providerService)
-	return providerService, nil
 }
 
 func ValidateConfigfile(providerConfigFile string) (string, error) {
